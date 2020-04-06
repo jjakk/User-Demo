@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/jjakk/User-Demo/issues"
   },
-  "homepage": "https://github.com/jjakk/User-Demo#readme"
+  "homepage": "https://github.com/jjakk/User-Demo#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
