@@ -10,4 +10,8 @@ signInRouter.get('/', (req, res) => {
   res.render('signIn');
 });
 
+signInRouter.post('/', (req, res) => {
+  res.redirect('/');
+});
+
 module.exports = signInRouter;

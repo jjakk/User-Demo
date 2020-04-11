@@ -17,5 +17,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.render('signIn');
+  res.redirect('/signIn');
 });
