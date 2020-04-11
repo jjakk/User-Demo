@@ -7,6 +7,7 @@ let signUpRouter = require('./routers/signUp.js');
 
 app.use('/signin', signInRouter);
 app.use('/signup', signUpRouter);
+app.use(express.static('public'));
 
 app.set('view engine', 'pug');
 app.set('views', './views');
@@ -16,5 +17,5 @@ app.listen(port, () => {
 });
 
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('signIn');
 });
