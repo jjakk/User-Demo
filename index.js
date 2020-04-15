@@ -1,21 +1,30 @@
 const express = require('express');
+const dotenv = require('dotenv');
 const app = express();
 const port = process.env.PORT || 8000;
+const mongoose = require('mongoose');
+// Import Routes
+const authRouter = require('./routers/auth.js');
 
-let signInRouter = require('./routers/signIn.js');
-let signUpRouter = require('./routers/signUp.js');
+dotenv.config();
 
-app.use('/signin', signInRouter);
-app.use('/signup', signUpRouter);
-app.use(express.static('public'));
+// Connect to DB
+mongoose.connect(
+  'mongodb://localhost:27017/mydb',
+  {
+    useUnifiedTopology: true,
+    useNewUrlParser: true
+  },
+  () => {
+    console.log('connected to DB');
+});
 
-app.set('view engine', 'pug');
-app.set('views', './views');
+// Middlewares
+app.use(express.json());
+
+// Router Middlewares
+app.use('/api/user', authRouter);
 
 app.listen(port, () => {
   console.log('Running on port ' + port);
-});
-
-app.get('/', (req, res) => {
-  res.redirect('/signIn');
 });
