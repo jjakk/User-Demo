@@ -1,9 +1,10 @@
 head
+  title Register
 body
   header
     h1 Register
   main
-    form(action='/api/user/register' method='POST')
+    form(action='/api/user/register' method='POST')#registerForm
       input(placeholder='name' type='text' name='name')
       br
       br
@@ -16,3 +17,4 @@ body
       button(type='submit') Register
     a(href='/login') Login
   footer
+    script(src='js/index.js')

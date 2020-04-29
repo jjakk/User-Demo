@@ -27,7 +27,8 @@ app.set('views', './views');
 
 // Middlewares
 app.use(express.json());
-app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static('public'));
 
 // Router Middlewares
 app.use('/api/user', authRouter);

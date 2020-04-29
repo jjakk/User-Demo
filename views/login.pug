@@ -1,9 +1,10 @@
 head
+  title Login
 body
   header
     h1 Login
   main
-    form(action='/api/user/login' method='POST')
+    form(onsubmit='login(event)')#loginForm
       input(placeholder='email' type='email' name='email')
       br
       br
@@ -13,3 +14,4 @@ body
       button(type='submit') Login
     a(href='/register') Create an account
   footer
+    script(src='js/index.js')
