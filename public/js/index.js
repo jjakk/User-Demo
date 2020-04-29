@@ -1,8 +1,9 @@
 
 let xhttp = new XMLHttpRequest();
-function request(method, path, body,callback){
+function request(method, path, callback, body=null){
   xhttp.open(method, path, true);
   xhttp.setRequestHeader("Content-type","application/json;charset=UTF-8");
+  if(getCookie('auth-token')) xhttp.setRequestHeader("auth-token", getCookie('auth-token'));
   xhttp.send(JSON.stringify(body));
   xhttp.onload = function() {
     callback(xhttp.responseText);
@@ -12,11 +13,13 @@ function request(method, path, body,callback){
 function login(e){
   e.preventDefault();
   let form = document.getElementById('loginForm');
-  data = getFormData(form);
-  console.log(data);
-  request('POST', '/api/user/login', data, (data) => {
+  formData = getFormData(form);
+  request('POST', '/api/user/login', (data) => {
     document.cookie = 'auth-token=' + data;
-  });
+    request('GET', '/loggedIn', (loggedInData) => {
+      console.log(loggedInData);
+    });
+  }, formData);
 }
 
 // Got this from stack overflow.  It gets data from a cookie
