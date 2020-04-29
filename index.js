@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 8000;
 const mongoose = require('mongoose');
@@ -20,12 +21,21 @@ mongoose.connect(
     console.log('connected to DB');
 });
 
+// App settings
+app.set('view engine', 'pug');
+app.set('views', './views');
+
 // Middlewares
 app.use(express.json());
+app.use(bodyParser.urlencoded({extended: true}))
 
 // Router Middlewares
 app.use('/api/user', authRouter);
 app.use('/api/posts', postRouter);
+
+app.get('/', (req, res) => {
+  res.render('login');
+});
 
 app.listen(port, () => {
   console.log('Running on port ' + port);
