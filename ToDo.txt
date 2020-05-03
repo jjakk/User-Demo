@@ -3,3 +3,4 @@ ToDo
 
 -logged in page
 -Editable user settings
+-Sign out button
