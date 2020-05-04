@@ -16,9 +16,7 @@ function login(e){
   formData = getFormData(form);
   request('POST', '/api/user/login', (data) => {
     document.cookie = 'auth-token=' + data;
-    request('GET', '/loggedIn', (loggedInData) => {
-      console.log(loggedInData);
-    });
+    window.location = '/loggedIn';
   }, formData);
 }
 

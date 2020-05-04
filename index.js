@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 8000;
 const mongoose = require('mongoose');
@@ -31,6 +32,7 @@ app.set('views', './views');
 app.use(express.json());
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(express.static('public'));
+app.use(cookieParser());
 
 // Router Middlewares
 app.use('/api/user', authRouter);
