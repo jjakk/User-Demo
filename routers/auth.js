@@ -55,4 +55,8 @@ router.post('/login', async (req, res) => {
   //res.header('auth-token', token).send(token);
 });
 
+router.post('/logout', (req, res) => {
+  res.cookie('auth-token', '').redirect('/login');
+});
+
 module.exports = router;

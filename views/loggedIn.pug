@@ -10,7 +10,8 @@ body
     button(onclick='deleteAccount()') Delete account
     br
     br
-    button(onclick='logout()') Logout
+    form(action='/api/user/logout' method='POST')
+      button(type='submit') Logout
   footer
     script(src='js/index.js')
     script(src='js/loggedIn.js')
