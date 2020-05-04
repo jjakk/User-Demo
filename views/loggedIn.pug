@@ -7,9 +7,8 @@ body
     span You're now signed in
     br
     br
-    button(onclick='deleteAccount()') Delete account
-    br
-    br
+    form(method='POST' action='/api/user/delete' onsubmit='return confirm("are you sure you want to delete your account");')
+      button(type='submit') Delete account
     form(action='/api/user/logout' method='POST')
       button(type='submit') Logout
   footer

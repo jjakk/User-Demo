@@ -1,8 +1,12 @@
 const router = require('express').Router();
+const app = require('express')();
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const User = require('../model/User');
 const {registerValidation, loginValidation} = require('../validation.js');
+
+app.use(cookieParser());
 
 // Register
 router.post('/register', async (req, res) => {
@@ -50,13 +54,28 @@ router.post('/login', async (req, res) => {
 
   // Create and assign a token
   const token = jwt.sign({_id: user._id}, process.env.TOKEN_SECRET);
-  console.log('token', token);
   res.cookie('auth-token', token).redirect('/loggedIn');
   //res.header('auth-token', token).send(token);
 });
 
 router.post('/logout', (req, res) => {
   res.cookie('auth-token', '').redirect('/login');
+});
+
+router.post('/delete', async (req, res) => {
+  /*const token = req.cookies['auth-token'];
+  console.log(token);
+
+  try{
+    // Checking if user is already in the database
+    const user = await User.deleteOne({email: req.body.email});
+    if(!user) return res.status(400).send("Email doesn't exits");
+  }
+  catch(err){
+    res.status(400).send(err);
+  }
+  */
+  res.send('ToDo');
 });
 
 module.exports = router;
