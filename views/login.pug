@@ -4,7 +4,7 @@ body
   header
     h1 Login
   main
-    form(onsubmit='login(event)')#loginForm
+    form(action='/api/user/login' method='POST')
       input(placeholder='email' type='email' name='email')
       br
       br
