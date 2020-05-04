@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const app = express();
 const port = process.env.PORT || 8000;
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
 const mongoose = require('mongoose');
 const verify = require('./routers/verifyToken');
 // Import Routes
@@ -17,7 +18,7 @@ dotenv.config();
 
 // Connect to DB
 mongoose.connect(
-  'mongodb://localhost:27017/userdb',
+  mongoURI,
   {
     useUnifiedTopology: true,
     useNewUrlParser: true
