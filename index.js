@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const jwt = require('jsonwebtoken');
 const app = express();
 const port = process.env.PORT || 8000;
 const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/userdb';
@@ -43,7 +44,15 @@ app.use('/login', loginRouter);
 app.use('/register', registerRouter);
 
 app.get('/', (req, res) => {
-  res.redirect('/login');
+  const token = req.cookies['auth-token'];
+  if(!token) return res.redirect('/login');
+  try {
+    const verified = jwt.verify(token, process.env.TOKEN_SECRET);
+    res.redirect('/loggedIn');
+  }
+  catch (e) {
+    res.redirect('/login');
+  }
 });
 
 app.listen(port, () => {
