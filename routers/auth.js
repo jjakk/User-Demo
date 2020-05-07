@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const User = require('../model/User');
+const verify = require('./verifyToken');
 const {registerValidation, loginValidation} = require('../validation.js');
 
 app.use(cookieParser());
@@ -63,19 +64,17 @@ router.post('/logout', (req, res) => {
   res.cookie('auth-token', '').redirect('/login');
 });
 
-router.post('/delete', async (req, res) => {
-  /*const token = req.cookies['auth-token'];
-  console.log(token);
-
+router.post('/delete', verify, async (req, res) => {
+  const token = req.cookies['auth-token'];
   try{
     // Checking if user is already in the database
-    const user = await User.deleteOne({email: req.body.email});
-    if(!user) return res.status(400).send("Email doesn't exits");
+    const user = await User.deleteOne({_id: req.user._id});
+    if(!user) return res.status(400).send("User doesn't exits");
+    res.cookie('auth-token', '').redirect('/');
   }
   catch(err){
     res.status(400).send(err);
   }
-  */
   res.send('ToDo');
 });
 
