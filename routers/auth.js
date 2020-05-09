@@ -78,4 +78,8 @@ router.post('/delete', verify, async (req, res) => {
   res.send('ToDo');
 });
 
+router.post('/resetPassword', (req, res) => {
+  res.redirect('/');
+});
+
 module.exports = router;
