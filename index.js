@@ -42,7 +42,7 @@ app.get('/', (req, res) => {
   if(!token) return res.redirect('/login');
   try {
     const verified = jwt.verify(token, process.env.TOKEN_SECRET);
-    res.redirect('/loggedIn');
+    res.redirect('/home');
   }
   catch (e) {
     res.redirect('/login');
