@@ -10,10 +10,7 @@ const mongoose = require('mongoose');
 const verify = require('./routers/verifyToken');
 // Import Routes
 const authRouter = require('./routers/auth.js');
-const postRouter = require('./routers/posts.js');
-const loggedInRouter = require('./routers/loggedIn.js');
-const loginRouter = require('./routers/login.js');
-const registerRouter = require('./routers/register.js');
+const uiRouter = require('./routers/ui.js');
 
 dotenv.config();
 
@@ -38,10 +35,7 @@ app.use(cookieParser());
 
 // Router Middlewares
 app.use('/api/user', authRouter);
-app.use('/api/posts', postRouter);
-app.use('/loggedIn', loggedInRouter);
-app.use('/login', loginRouter);
-app.use('/register', registerRouter);
+app.use(uiRouter);
 
 app.get('/', (req, res) => {
   const token = req.cookies['auth-token'];
