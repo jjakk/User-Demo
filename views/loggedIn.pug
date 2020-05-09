@@ -4,7 +4,7 @@ body
   header
     h1 Logged In
   main
-    span You're now signed in
+    span Hello #{name}, you're now signed in
     br
     br
     form(method='POST' action='/api/user/delete' onsubmit='return confirm("are you sure you want to delete your account");')
