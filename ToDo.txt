@@ -1,5 +1,4 @@
 
 ToDo
 
--Editable user settings
 -Forgot password
