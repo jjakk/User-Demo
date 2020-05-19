@@ -1,0 +1,17 @@
+head
+  title New password
+body
+  header
+    h1 New Password
+  main
+    form(action='/api/user/reset/'+token method='POST')
+      input(placeholder='New password' type='password' name='password')
+      br
+      br
+      input(placeholder='confirm' type='password' name='confirm')
+      br
+      br
+      button(type='submit') Reset password
+    a(href='/') Back to Sign In
+  footer
+    script(src='js/index.js')
